@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Aura Launcher privacy policy covering push notifications, Firebase, and related data.">
+  <title>Privacy Policy — Aura Launcher</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #64708a;
+      --line: #e7eaf1;
+      --paper: #fff;
+      --canvas: #f7f8fc;
+      --accent: #6758e8;
+      --accent-dark: #4d40c5;
+      --tint: #f1efff;
+      --green: #23876a;
+      --shadow: 0 18px 55px rgba(37, 46, 79, .08);
+    }
+
+    * { box-sizing: border-box; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+      border: 0;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+    button { font: inherit; }
+    .topbar {
+      position: sticky;
+      z-index: 5;
+      top: 0;
+      border-bottom: 1px solid rgba(231, 234, 241, .9);
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      width: min(1120px, calc(100% - 40px));
+      min-height: 72px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; font-weight: 750; letter-spacing: -.03em; }
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #8275ff, #4e40d0);
+      box-shadow: 0 7px 16px rgba(103, 88, 232, .24);
+      color: white;
+      font-size: 15px;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .02em; line-height: 1.2; }
+    .language {
+      display: flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f8f9fc;
+    }
+    .language select {
+      min-width: 150px;
+      padding: 9px 34px 9px 14px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .language select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin: 44px 0 28px;
+      padding: clamp(32px, 6vw, 66px);
+      border: 1px solid #e8e7fb;
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 92% 10%, rgba(166, 156, 255, .25), transparent 34%),
+        linear-gradient(115deg, #fff 20%, #f5f4ff 100%);
+      box-shadow: var(--shadow);
+    }
+    .hero:after {
+      position: absolute;
+      right: -44px;
+      bottom: -115px;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(103, 88, 232, .12);
+      border-radius: 50%;
+      box-shadow: 0 0 0 34px rgba(103, 88, 232, .035), 0 0 0 72px rgba(103, 88, 232, .025);
+      content: "";
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 11px;
+      border: 1px solid #e4e0ff;
+      border-radius: 99px;
+      background: #fff;
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+    }
+    .eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: #42b889; }
+    h1 { max-width: 720px; margin: 20px 0 12px; font-size: clamp(36px, 6vw, 58px); letter-spacing: -.055em; line-height: 1.08; }
+    .hero p { max-width: 670px; margin: 0; color: var(--muted); font-size: 17px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; color: var(--muted); font-size: 13px; }
+    .meta strong { color: var(--ink); font-weight: 650; }
+    .layout { display: grid; grid-template-columns: 252px minmax(0, 1fr); align-items: start; gap: 26px; padding-bottom: 72px; }
+    .toc {
+      position: sticky;
+      top: 94px;
+      padding: 22px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 8px 26px rgba(37, 46, 79, .035);
+    }
+    .toc h2 { margin: 0 0 12px; color: var(--muted); font-size: 11px; letter-spacing: .11em; text-transform: uppercase; }
+    .toc ol { margin: 0; padding: 0; list-style: none; }
+    .toc li + li { margin-top: 2px; }
+    .toc a { display: block; padding: 6px 9px; border-radius: 8px; color: #536078; font-size: 12px; line-height: 1.45; text-decoration: none; }
+    .toc a:hover { background: var(--tint); color: var(--accent-dark); }
+    .content { min-width: 0; }
+    .notice {
+      display: flex;
+      gap: 13px;
+      margin-bottom: 16px;
+      padding: 17px 20px;
+      border: 1px solid #dceee8;
+      border-radius: 15px;
+      background: #f4fbf8;
+      color: #375d51;
+      font-size: 13px;
+    }
+    .notice-icon { flex: 0 0 auto; font-size: 18px; }
+    .notice p { margin: 0; }
+    .section {
+      margin-bottom: 15px;
+      padding: clamp(21px, 4vw, 32px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 8px 26px rgba(37, 46, 79, .035);
+    }
+    .section h2 { margin: 0 0 13px; font-size: 21px; letter-spacing: -.025em; line-height: 1.35; }
+    .section h3 { margin: 22px 0 7px; font-size: 15px; letter-spacing: -.01em; }
+    .section p { margin: 9px 0; color: #4d5870; }
+    .section ul { margin: 9px 0; padding-left: 21px; color: #4d5870; }
+    .section li { margin: 6px 0; padding-left: 3px; }
+    .section li::marker { color: var(--accent); }
+    .section strong { color: #252f45; }
+    .section .small { font-size: 13px; }
+    .contact-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; padding: 16px 18px; border-radius: 13px; background: var(--tint); }
+    .contact-card a { font-weight: 700; }
+    footer { border-top: 1px solid var(--line); background: white; }
+    .footer-inner { width: min(1120px, calc(100% - 40px)); margin: auto; padding: 23px 0 30px; display: flex; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 12px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .toc ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 6px; }
+    }
+    @media (max-width: 520px) {
+      .topbar-inner, .page, .footer-inner { width: min(100% - 28px, 1120px); }
+      .topbar-inner { min-height: 64px; }
+      .hero { margin-top: 24px; padding: 29px 23px; border-radius: 21px; }
+      .hero p { font-size: 15px; }
+      .layout { gap: 14px; }
+      .toc { padding: 17px 13px; }
+      .toc ol { grid-template-columns: 1fr; }
+      .section { border-radius: 15px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="top">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Aura Launcher">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Aura Launcher<small>PROXGAME</small></span>
+      </a>
+      <div class="language">
+        <label class="sr-only" for="language-select">Choose language</label>
+        <select id="language-select" aria-label="Choose language">
+          <option value="en" selected>English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="pt-BR">Português (Brasil)</option>
+          <option value="de">Deutsch</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page lang-fr" lang="fr" hidden>
+      <section class="hero">
+        <span class="eyebrow"><span></span> Confidentialité et transparence</span>
+        <h1>Politique de confidentialité</h1>
+        <p>Découvrez comment Aura Launcher traite les données liées aux notifications push et quels choix de contrôle s’offrent à vous.</p>
+        <div class="meta">
+          <span>Application : <strong>Aura Launcher</strong></span>
+          <span>Éditeur : <strong>Proxgame</strong></span>
+          <span>Dernière mise à jour : <strong>13 novembre 2026</strong></span>
+        </div>
+      </section>
+      <div class="layout">
+        <nav class="toc" aria-label="Table des matières">
+          <h2>Dans cette politique</h2>
+          <ol>
+            <li><a href="#fr-scope">1. Champ d’application</a></li>
+            <li><a href="#fr-data">2. Données traitées</a></li>
+            <li><a href="#fr-purpose">3. Finalités et bases légales</a></li>
+            <li><a href="#fr-permission">4. Contrôle des notifications</a></li>
+            <li><a href="#fr-firebase">5. Firebase et prestataires</a></li>
+            <li><a href="#fr-sharing">6. Partage et transferts</a></li>
+            <li><a href="#fr-retention">7. Conservation et sécurité</a></li>
+            <li><a href="#fr-rights">8. Vos droits</a></li>
+            <li><a href="#fr-children">9. Enfants</a></li>
+            <li><a href="#fr-changes">10. Modifications</a></li>
+            <li><a href="#fr-contact">11. Contact</a></li>
+          </ol>
+        </nav>
+        <div class="content">
+          <aside class="notice">
+            <span class="notice-icon" aria-hidden="true">✓</span>
+            <p><strong>Vous gardez le contrôle.</strong> Vous pouvez refuser l’autorisation ou désactiver les notifications à tout moment dans les paramètres Android. Les autres fonctionnalités de l’application restent disponibles, sauf celles qui nécessitent les notifications.</p>
+          </aside>
+          <article class="section" id="fr-scope">
+            <h2>1. Champ d’application</h2>
+            <p>Cette politique explique comment <strong>Proxgame</strong> (« nous ») traite les données personnelles liées aux notifications push dans <strong>Aura Launcher</strong> (l’« Application »), notamment l’utilisation de Firebase Cloud Messaging (FCM) pour transmettre des notifications à votre appareil.</p>
+            <p>Elle complète les autres avis de confidentialité affichés dans l’Application. Tout avis propre à une fonctionnalité s’applique également à celle-ci. Les « données personnelles » désignent les informations permettant d’identifier une personne ou pouvant lui être associées au sens du droit applicable.</p>
+          </article>
+          <article class="section" id="fr-data">
+            <h2>2. Données susceptibles d’être traitées</h2>
+            <p>Selon la configuration de l’Application, votre appareil, vos choix et les fonctionnalités Firebase activées, les données concernées peuvent inclure :</p>
+            <ul>
+              <li><strong>Jeton d’enregistrement FCM :</strong> identifiant technique créé ou géré par Firebase pour acheminer les notifications vers une installation de l’application sur un appareil. Il peut être renouvelé, modifié ou invalidé.</li>
+              <li><strong>Informations sur l’application et l’appareil :</strong> versions de l’application et du système d’exploitation, type d’appareil, langue et données techniques nécessaires à la compatibilité, à l’envoi et au dépannage.</li>
+              <li><strong>Données de transmission et de diagnostic :</strong> adresse IP utilisée par votre connexion Internet, heures d’envoi ou de réception, état de livraison, erreurs et journaux techniques fournis par Firebase.</li>
+              <li><strong>Préférences de notification :</strong> état de l’autorisation, sujets ou catégories choisis et préférences d’abonnement ou de désabonnement, si l’Application propose ces options.</li>
+              <li><strong>Contenu des notifications :</strong> titre, message ou données associées envoyés par un serveur afin d’afficher ou de traiter une notification. Évitez d’y inclure des données sensibles ; le contenu affiché sur l’écran verrouillé peut être vu par d’autres personnes.</li>
+              <li><strong>Données d’utilisation :</strong> événements d’interaction ou données de performance uniquement si les fonctionnalités de mesure correspondantes sont activées dans la version utilisée.</li>
+            </ul>
+            <p>Un jeton FCM peut constituer une donnée personnelle lorsqu’il peut être associé à un appareil ou à un utilisateur. Nous n’avons pas besoin du contenu de vos contacts, SMS, mots de passe ou données de paiement pour envoyer des notifications push.</p>
+          </article>
+          <article class="section" id="fr-purpose">
+            <h2>3. Finalités et bases légales</h2>
+            <p>Nous et nos prestataires pouvons traiter les données ci-dessus afin de :</p>
+            <ul>
+              <li>enregistrer un appareil, acheminer et transmettre les notifications que vous avez activées ou demandées ;</li>
+              <li>mémoriser vos préférences et synchroniser votre abonnement aux notifications, si cette fonction est proposée ;</li>
+              <li>sécuriser le service, diagnostiquer les erreurs, prévenir les abus et améliorer la fiabilité des envois ;</li>
+              <li>respecter nos obligations légales et répondre à vos demandes d’assistance.</li>
+            </ul>
+            <p>Selon votre lieu de résidence et l’activité concernée, le traitement peut reposer sur votre consentement, la fourniture d’une fonctionnalité que vous demandez, notre intérêt légitime à exploiter un service sécurisé ou une obligation légale. Lorsque la loi l’exige, nous recueillons un consentement distinct avant d’activer des mesures d’audience ou d’utiliser des données à des fins non essentielles.</p>
+          </article>
+          <article class="section" id="fr-permission">
+            <h2>4. Autorisation et contrôle des notifications</h2>
+            <p>Android peut vous demander l’autorisation d’envoyer des notifications. Vous pouvez la refuser, modifier votre choix ou désactiver toutes les notifications ou certaines catégories dans <strong>Paramètres Android → Applications → Aura Launcher → Notifications</strong> (les intitulés peuvent varier selon l’appareil). Si l’Application propose des réglages par sujet ou type, vous pouvez également les modifier dans l’Application.</p>
+            <p>La désactivation de l’autorisation empêche l’affichage de la plupart des notifications, mais ne supprime pas nécessairement immédiatement un jeton ou les journaux déjà traités par Firebase. Pour mettre fin à un abonnement côté serveur, utilisez la fonction de désabonnement si l’Application en propose une ; vous pouvez également désinstaller l’Application. La suppression des données sur les systèmes d’un prestataire peut prendre un certain temps.</p>
+            <p>Les notifications push peuvent être retardées, ne pas être livrées ou ne pas fonctionner si l’appareil est hors ligne, si le système limite l’activité en arrière-plan ou si le service de transmission est indisponible. Ne les utilisez pas pour les urgences.</p>
+          </article>
+          <article class="section" id="fr-firebase">
+            <h2>5. Firebase et prestataires de services</h2>
+            <p>L’Application utilise <strong>Firebase Cloud Messaging</strong>, un service de Google, pour prendre en charge l’envoi des notifications push. Google traite les données nécessaires à la fourniture du service selon la configuration de l’Application et ses propres conditions et politiques. Google peut traiter directement certaines données de transmission et de diagnostic.</p>
+            <p>L’utilisation de Firebase Analytics, Crashlytics ou d’autres services Firebase dépend de la version déployée et de sa configuration. S’ils sont activés, les données correspondantes sont traitées uniquement aux fins indiquées et sous réserve des choix ou consentements exigés par la loi. L’utilisation de FCM ne signifie pas que tous les services Firebase sont activés.</p>
+            <ul>
+              <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Informations sur la confidentialité et la sécurité de Firebase</a></li>
+              <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Règles de confidentialité de Google</a></li>
+            </ul>
+          </article>
+          <article class="section" id="fr-sharing">
+            <h2>6. Partage et transferts internationaux</h2>
+            <p>Nous pouvons partager les données nécessaires avec Google/Firebase et avec des prestataires d’infrastructure, de sécurité ou d’assistance technique qui les traitent pour notre compte. Ces prestataires ne peuvent traiter les données que dans la mesure nécessaire à leurs services, conformément aux conditions applicables et à la loi.</p>
+            <p>Les données peuvent être traitées dans un pays autre que celui où vous résidez. Lorsque la loi l’exige, nous mettons en place des garanties appropriées pour les transferts internationaux. Nous pouvons également divulguer des données si cela est nécessaire pour respecter la loi, protéger les droits ou la sécurité des utilisateurs ou lutter contre les abus du service.</p>
+            <p>Google peut traiter certaines données en qualité de responsable distinct, conformément à ses conditions de service et à ses règles de confidentialité. Consultez les liens Firebase ci-dessus pour en savoir plus sur les pratiques de Google.</p>
+          </article>
+          <article class="section" id="fr-retention">
+            <h2>7. Conservation et sécurité</h2>
+            <p>Les données sont conservées aussi longtemps que nécessaire aux fins décrites dans cette politique, selon les paramètres de conservation du service, pour traiter les incidents ou respecter la loi. Les jetons peuvent être renouvelés ou supprimés lorsqu’ils ne sont plus valides ; les journaux de diagnostic peuvent être conservés selon les délais du prestataire. La durée réelle varie selon le type de données et la configuration.</p>
+            <p>Nous appliquons des mesures techniques et organisationnelles adaptées afin de réduire les risques d’accès, de modification ou de divulgation non autorisés. Aucune méthode de transmission ou de stockage ne peut garantir une sécurité absolue.</p>
+          </article>
+          <article class="section" id="fr-rights">
+            <h2>8. Vos droits et vos choix</h2>
+            <p>Selon la législation applicable dans votre pays, vous pouvez avoir le droit de demander l’accès à vos données personnelles, une copie, leur rectification ou leur suppression, ou la limitation de leur traitement ; de vous opposer à certains traitements ; de retirer votre consentement ; ou de déposer une réclamation auprès d’une autorité de protection des données compétente. Le retrait du consentement n’affecte pas la licéité du traitement effectué auparavant.</p>
+            <p>Vous pouvez désactiver l’autorisation de notification dans les paramètres de votre appareil sans nous contacter. Pour exercer d’autres droits, écrivez-nous à l’adresse indiquée ci-dessous. Nous pouvons vérifier votre identité, demander des précisions pour retrouver les données ou refuser une demande lorsque la loi le permet ; nous répondrons dans les délais légaux applicables.</p>
+          </article>
+          <article class="section" id="fr-children">
+            <h2>9. Confidentialité des enfants</h2>
+            <p>Aura Launcher ne collecte pas sciemment de données personnelles d’enfants en violation des exigences applicables en matière d’âge ou de consentement parental. Si vous êtes parent ou tuteur et pensez qu’un enfant nous a transmis des données de manière inappropriée, contactez-nous afin que nous puissions examiner la situation et prendre les mesures nécessaires.</p>
+          </article>
+          <article class="section" id="fr-changes">
+            <h2>10. Modifications de cette politique</h2>
+            <p>Nous pouvons mettre à jour cette politique lorsque l’Application, les services ou les exigences légales évoluent. La nouvelle version sera publiée sur cette page avec sa date de mise à jour. Si une modification importante affecte vos droits ou l’utilisation des données, nous vous en informerons dans l’Application ou par un autre moyen approprié, conformément à la loi.</p>
+          </article>
+          <article class="section" id="fr-contact">
+            <h2>11. Responsable et contact</h2>
+            <p>Éditeur et interlocuteur pour les questions de confidentialité :</p>
+            <div class="contact-card">
+              <span><strong>Proxgame</strong><br><span class="small">Confidentialité — Aura Launcher</span></span>
+              <a href="mailto:longnpdevmobile@gmail.com">longnpdevmobile@gmail.com</a>
+            </div>
+            <p class="small">Veuillez indiquer « Demande relative à la confidentialité — Aura Launcher » en objet. N’envoyez pas de mot de passe, de code de vérification ni d’information sensible par e-mail.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="page lang-en" lang="en">
+      <section class="hero">
+        <span class="eyebrow"><span></span> Privacy &amp; transparency</span>
+        <h1>Privacy Policy</h1>
+        <p>How Aura Launcher handles data related to push notifications and the choices available to you.</p>
+        <div class="meta">
+          <span>App: <strong>Aura Launcher</strong></span>
+          <span>Developer: <strong>Proxgame</strong></span>
+          <span>Last updated: <strong>November 13, 2026</strong></span>
+        </div>
+      </section>
+      <div class="layout">
+        <nav class="toc" aria-label="Table of contents">
+          <h2>In this policy</h2>
+          <ol>
+            <li><a href="#en-scope">1. Scope</a></li>
+            <li><a href="#en-data">2. Data processed</a></li>
+            <li><a href="#en-purpose">3. Purposes and legal bases</a></li>
+            <li><a href="#en-permission">4. Notification controls</a></li>
+            <li><a href="#en-firebase">5. Firebase and providers</a></li>
+            <li><a href="#en-sharing">6. Sharing and transfers</a></li>
+            <li><a href="#en-retention">7. Retention and security</a></li>
+            <li><a href="#en-rights">8. Your rights</a></li>
+            <li><a href="#en-children">9. Children</a></li>
+            <li><a href="#en-changes">10. Changes</a></li>
+            <li><a href="#en-contact">11. Contact</a></li>
+          </ol>
+        </nav>
+        <div class="content">
+          <aside class="notice">
+            <span class="notice-icon" aria-hidden="true">✓</span>
+            <p><strong>You are in control.</strong> You can decline permission or turn off notifications at any time in Android settings. Other app features remain available unless they require notifications to work.</p>
+          </aside>
+          <article class="section" id="en-scope">
+            <h2>1. Scope</h2>
+            <p>This policy explains how <strong>Proxgame</strong> (“we”) handles personal data related to push notifications in <strong>Aura Launcher</strong> (the “App”), including the use of Firebase Cloud Messaging (FCM) to deliver notifications to your device.</p>
+            <p>This policy applies alongside any other privacy notices shown in the App. A feature-specific notice also applies to the relevant feature. “Personal data” means information that identifies, or can be linked to, an individual under applicable law.</p>
+          </article>
+          <article class="section" id="en-data">
+            <h2>2. Data that may be processed</h2>
+            <p>Depending on the App configuration, your device, your choices, and which Firebase features are enabled, related data may include:</p>
+            <ul>
+              <li><strong>FCM registration token:</strong> a technical address created or managed by Firebase to route notifications to an app installation on a device. It may change, be refreshed, or become invalid.</li>
+              <li><strong>App and device information:</strong> app version, operating-system version, device type, language, and technical information needed for compatibility, delivery, and troubleshooting.</li>
+              <li><strong>Transmission and diagnostic data:</strong> the IP address used by your internet connection, send/receipt times, delivery status, errors, or technical logs made available by Firebase.</li>
+              <li><strong>Notification preferences:</strong> notification permission status, topics or categories you select, and subscription or unsubscribe choices, if the App offers these options.</li>
+              <li><strong>Notification content:</strong> the title, message, or accompanying data sent by a server to display or process a notification. Do not include sensitive data in notifications; content shown on a lock screen may be visible to others.</li>
+              <li><strong>Usage data:</strong> interaction events or performance data only if the corresponding measurement features are enabled in the App version you use.</li>
+            </ul>
+            <p>An FCM token may be personal data when it can be linked to a device or user. We do not require your contacts, SMS messages, passwords, or payment data to deliver push notifications.</p>
+          </article>
+          <article class="section" id="en-purpose">
+            <h2>3. Purposes and legal bases</h2>
+            <p>We and our service providers may process the data above to:</p>
+            <ul>
+              <li>register a device, route, and deliver notifications you enabled or requested;</li>
+              <li>remember preferences and synchronize notification subscription status, if that feature is available;</li>
+              <li>secure the service, diagnose errors, prevent abuse, and improve delivery reliability; and</li>
+              <li>meet legal obligations and respond to support requests.</li>
+            </ul>
+            <p>Depending on where you live and what we do, the legal basis may be your consent, providing a feature you request, our legitimate interests in operating a secure service, or a legal obligation. Where required by law, we obtain separate consent before enabling measurement or using data for non-essential purposes.</p>
+          </article>
+          <article class="section" id="en-permission">
+            <h2>4. Notification permission and controls</h2>
+            <p>Android may ask you to grant notification permission. You can decline, change your choice, or turn off all or selected notifications under <strong>Android Settings → Apps → Aura Launcher → Notifications</strong> (labels may differ by device). If the App provides topic or notification-type controls, you can also adjust them in the App.</p>
+            <p>Turning off permission prevents most notifications from appearing, but may not immediately delete a token or logs Firebase has already processed. To stop a server-side subscription, use an unsubscribe option if the App provides one; you may also uninstall the App. Deletion from a provider's systems may take time to complete.</p>
+            <p>Push notifications may be delayed, not delivered, or unavailable when a device is offline, the operating system restricts background activity, or a delivery service has an outage. Do not rely on push notifications for emergencies.</p>
+          </article>
+          <article class="section" id="en-firebase">
+            <h2>5. Firebase and service providers</h2>
+            <p>The App uses <strong>Firebase Cloud Messaging</strong> from Google to support push delivery. Google processes data needed to provide the service based on the App's configuration and Google's applicable terms and policies. Google may directly process certain transmission and diagnostic data.</p>
+            <p>Whether Firebase Analytics, Crashlytics, or another Firebase service is used depends on the deployed version and configuration. If enabled, those services process relevant data only for disclosed purposes and subject to choices or consent required by law. Using FCM does not mean that every Firebase service is enabled.</p>
+            <ul>
+              <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase privacy and security information</a></li>
+              <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+            </ul>
+          </article>
+          <article class="section" id="en-sharing">
+            <h2>6. Sharing and international transfers</h2>
+            <p>We may share data as necessary with Google/Firebase and infrastructure, security, or technical support providers processing data on our behalf. Providers may process data only as needed to provide their services, subject to applicable terms and law.</p>
+            <p>Data may be processed in a country other than where you live. Where required by law, we use appropriate safeguards for international data transfers. We may also disclose data when necessary to comply with law, protect users' rights or safety, or address misuse of the service.</p>
+            <p>Google may process certain data in its own role and under Google's service terms and privacy policies. See the Firebase links above for more information about Google's data practices.</p>
+          </article>
+          <article class="section" id="en-retention">
+            <h2>7. Retention and security</h2>
+            <p>Data is retained as long as needed for the purposes described in this policy, under service retention settings, to address issues, or to meet legal requirements. Tokens may be refreshed or removed when invalid; diagnostic logs may be retained under the provider's retention periods. Actual periods may vary by data type and configuration.</p>
+            <p>We use appropriate technical and organizational measures to reduce the risk of unauthorized access, alteration, or disclosure. No method of transmission or storage can be guaranteed to be completely secure.</p>
+          </article>
+          <article class="section" id="en-rights">
+            <h2>8. Your rights and choices</h2>
+            <p>Depending on the law where you live, you may have the right to request access to, a copy of, correction or deletion of, or restriction of processing of your personal data; object to certain processing; withdraw consent; or complain to a competent data protection authority. Withdrawal does not affect the lawfulness of processing before withdrawal.</p>
+            <p>You can turn off notification permission in your device settings without contacting us. To exercise other rights, email us using the contact details below. We may need to verify your identity, request information to locate data, or refuse a request where the law permits; we will respond within applicable legal time limits.</p>
+          </article>
+          <article class="section" id="en-children">
+            <h2>9. Children's privacy</h2>
+            <p>Aura Launcher does not knowingly collect children's personal data contrary to applicable age and parental-consent requirements. If you are a parent or guardian and believe a child has provided data inappropriately, contact us so we can review and address the matter.</p>
+          </article>
+          <article class="section" id="en-changes">
+            <h2>10. Changes to this policy</h2>
+            <p>We may update this policy as the App, services, or legal requirements change. The new version will be posted on this page with its update date. If a material change affects your rights or how data is used, we will notify you in the App or by another appropriate method as required.</p>
+          </article>
+          <article class="section" id="en-contact">
+            <h2>11. Responsible party and contact</h2>
+            <p>Developer and privacy contact:</p>
+            <div class="contact-card">
+              <span><strong>Proxgame</strong><br><span class="small">Privacy — Aura Launcher</span></span>
+              <a href="mailto:longnpdevmobile@gmail.com">longnpdevmobile@gmail.com</a>
+            </div>
+            <p class="small">Please use “Privacy request — Aura Launcher” as the email subject. Do not send passwords, verification codes, or sensitive information by email.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div id="localized-policy" class="page" hidden></div>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Proxgame · Aura Launcher</span>
+      <span>Available in 11 languages</span>
+    </div>
+  </footer>
+  <script>
+    const policyTranslations = {
+      es: {
+        title: "Política de privacidad",
+        intro: "Cómo Aura Launcher trata los datos relacionados con las notificaciones push y las opciones de control disponibles.",
+        notice: "Tú tienes el control. Puedes denegar el permiso o desactivar las notificaciones en cualquier momento desde los ajustes de Android. Las demás funciones siguen disponibles, salvo las que dependan de las notificaciones.",
+        toc: "En esta política",
+        sections: [
+          ["Ámbito", "Esta política explica cómo Proxgame («nosotros») trata los datos personales relacionados con las notificaciones push de Aura Launcher («Aplicación»), incluido Firebase Cloud Messaging (FCM). Complementa los demás avisos de privacidad de la Aplicación. Los avisos específicos de una función también se aplican a dicha función."],
+          ["Datos que pueden tratarse", "Según la configuración, el dispositivo y las funciones activadas, pueden tratarse: el token de registro FCM; versión de la aplicación y del sistema, tipo de dispositivo e idioma; dirección IP, horas, estado de entrega, errores y registros técnicos; permiso y preferencias de notificación; título, texto y datos adjuntos de las notificaciones; y eventos de uso o rendimiento si se activan herramientas de medición. El token puede ser un dato personal si se vincula a un dispositivo o usuario. No necesitamos contactos, SMS, contraseñas ni datos de pago para enviar notificaciones."],
+          ["Finalidades y bases jurídicas", "Tratamos los datos para registrar dispositivos, dirigir y entregar las notificaciones solicitadas, recordar preferencias cuando corresponda, proteger el servicio, diagnosticar errores, prevenir abusos, mejorar la fiabilidad, atender consultas y cumplir obligaciones legales. La base jurídica puede ser el consentimiento, la prestación de una función solicitada, nuestro interés legítimo en la seguridad del servicio o una obligación legal. Cuando la ley lo exige, solicitamos consentimiento separado para mediciones no esenciales."],
+          ["Permisos y controles", "Puedes denegar, cambiar o desactivar las notificaciones en Ajustes de Android → Aplicaciones → Aura Launcher → Notificaciones; los nombres pueden variar. Si la Aplicación ofrece controles por tema, también puedes modificarlos allí. Desactivar el permiso no elimina necesariamente de inmediato los tokens o registros ya tratados. Usa la opción de baja, si está disponible, o desinstala la Aplicación; la eliminación en sistemas del proveedor puede tardar. Las notificaciones pueden retrasarse o no llegar y no deben utilizarse para emergencias."],
+          ["Firebase y proveedores", "Aura Launcher utiliza Firebase Cloud Messaging de Google para facilitar la entrega de notificaciones. Google trata los datos necesarios conforme a la configuración y sus propias condiciones y políticas. Firebase Analytics, Crashlytics u otros servicios solo se utilizan si están activados en la versión desplegada. Usar FCM no significa que estén activados todos los servicios Firebase."],
+          ["Comunicación y transferencias internacionales", "Los datos necesarios pueden compartirse con Google/Firebase y proveedores de infraestructura, seguridad o asistencia que actúan por nuestra cuenta. Pueden tratarse en otros países; aplicamos las garantías exigidas por la ley. También podemos divulgar datos para cumplir la ley, proteger derechos y seguridad o responder a abusos. Google puede tratar ciertos datos como responsable independiente según sus políticas."],
+          ["Conservación y seguridad", "Conservamos los datos solo el tiempo necesario para los fines descritos, la configuración del servicio, la resolución de incidentes y las obligaciones legales. Los tokens pueden renovarse o eliminarse cuando dejan de ser válidos; los registros siguen los plazos del proveedor. Aplicamos medidas técnicas y organizativas adecuadas, aunque ningún método garantiza seguridad absoluta."],
+          ["Tus derechos y opciones", "Según la ley aplicable, puedes solicitar acceso, copia, rectificación, supresión o limitación; oponerte a ciertos tratamientos, retirar el consentimiento o reclamar ante una autoridad de protección de datos. Retirarlo no afecta al tratamiento anterior. Puedes desactivar notificaciones en el dispositivo. Para otros derechos, escríbenos; podremos verificar tu identidad y responder dentro del plazo legal."],
+          ["Menores", "No recopilamos deliberadamente datos personales de menores en contra de los requisitos de edad o consentimiento parental aplicables. Si eres padre, madre o tutor y crees que un menor nos ha proporcionado datos de forma inadecuada, ponte en contacto con nosotros para que podamos revisarlo."],
+          ["Cambios", "Podemos actualizar esta política si cambian la Aplicación, los servicios o la legislación. Publicaremos aquí la versión actualizada y su fecha. Si un cambio importante afecta a tus derechos o al uso de datos, te informaremos en la Aplicación o por otro medio adecuado cuando corresponda."],
+          ["Responsable y contacto", "El desarrollador y contacto de privacidad es Proxgame. Para solicitudes, indica «Solicitud de privacidad — Aura Launcher» en el asunto. No envíes contraseñas, códigos de verificación ni información sensible por correo electrónico."]
+        ]
+      },
+      "pt-BR": {
+        title: "Política de Privacidade",
+        intro: "Saiba como o Aura Launcher trata dados relacionados a notificações push e quais opções de controle você tem.",
+        notice: "Você está no controle. É possível negar a permissão ou desativar notificações a qualquer momento nas configurações do Android. Os demais recursos continuam disponíveis, exceto os que dependem de notificações.",
+        toc: "Nesta política",
+        sections: [
+          ["Escopo", "Esta política explica como a Proxgame (“nós”) trata dados pessoais relacionados às notificações push do Aura Launcher (“Aplicativo”), incluindo o Firebase Cloud Messaging (FCM). Ela complementa os demais avisos de privacidade do Aplicativo. Avisos específicos de recursos também se aplicam a esses recursos."],
+          ["Dados que podem ser tratados", "Dependendo da configuração, do dispositivo e dos recursos ativados, podem ser tratados: token de registro FCM; versões do aplicativo e do sistema, tipo de dispositivo e idioma; endereço IP, horários, status de entrega, erros e registros técnicos; permissão e preferências de notificação; título, mensagem e dados anexos às notificações; e eventos de uso ou desempenho se ferramentas de medição estiverem ativadas. O token pode ser dado pessoal se associado a um dispositivo ou usuário. Não precisamos de contatos, SMS, senhas ou dados de pagamento para enviar notificações."],
+          ["Finalidades e bases legais", "Tratamos dados para registrar dispositivos, direcionar e entregar notificações solicitadas, lembrar preferências quando aplicável, proteger o serviço, diagnosticar erros, prevenir abusos, melhorar a confiabilidade, atender solicitações e cumprir obrigações legais. A base legal pode ser seu consentimento, a prestação de um recurso solicitado, nosso legítimo interesse em manter o serviço seguro ou uma obrigação legal. Quando exigido por lei, pedimos consentimento separado para medições não essenciais."],
+          ["Permissões e controles", "Você pode negar, alterar ou desativar notificações em Configurações do Android → Apps → Aura Launcher → Notificações; os nomes podem variar. Se o Aplicativo oferecer controles por assunto, você também pode alterá-los nele. Desativar a permissão não apaga necessariamente de imediato tokens ou registros já tratados. Use a opção de cancelamento, se disponível, ou desinstale o Aplicativo; a exclusão nos sistemas do fornecedor pode levar algum tempo. Notificações podem atrasar ou não chegar e não devem ser usadas para emergências."],
+          ["Firebase e prestadores", "O Aura Launcher usa o Firebase Cloud Messaging do Google para viabilizar a entrega de notificações. O Google trata os dados necessários conforme a configuração e seus próprios termos e políticas. Firebase Analytics, Crashlytics ou outros serviços só são usados se estiverem ativados na versão publicada. Usar FCM não significa que todos os serviços Firebase estejam ativados."],
+          ["Compartilhamento e transferências internacionais", "Os dados necessários podem ser compartilhados com Google/Firebase e prestadores de infraestrutura, segurança ou suporte que atuam em nosso nome. Os dados podem ser tratados em outros países; adotamos as salvaguardas exigidas pela lei. Também podemos divulgar dados para cumprir a lei, proteger direitos e segurança ou lidar com abusos. O Google pode tratar certos dados como controlador independente, conforme suas políticas."],
+          ["Retenção e segurança", "Mantemos os dados apenas pelo tempo necessário às finalidades descritas, às configurações do serviço, à resolução de problemas e às obrigações legais. Tokens podem ser renovados ou removidos quando inválidos; registros seguem os prazos do fornecedor. Adotamos medidas técnicas e organizacionais adequadas, mas nenhum método garante segurança absoluta."],
+          ["Seus direitos e escolhas", "Conforme a legislação aplicável, você pode solicitar acesso, cópia, correção, exclusão ou limitação; contestar determinados tratamentos, retirar consentimento ou reclamar a uma autoridade de proteção de dados. A retirada não afeta tratamentos anteriores. Você pode desativar notificações no dispositivo. Para exercer outros direitos, escreva para nós; poderemos confirmar sua identidade e responder no prazo legal."],
+          ["Crianças", "Não coletamos intencionalmente dados pessoais de crianças em desacordo com as exigências aplicáveis de idade ou consentimento dos responsáveis. Se você é responsável e acredita que uma criança forneceu dados de forma inadequada, entre em contato para que possamos analisar."],
+          ["Alterações", "Podemos atualizar esta política quando o Aplicativo, os serviços ou a legislação mudarem. Publicaremos a nova versão e a data nesta página. Se uma alteração importante afetar seus direitos ou o uso de dados, avisaremos no Aplicativo ou por outro meio adequado, quando necessário."],
+          ["Responsável e contato", "A desenvolvedora e contato de privacidade é Proxgame. Para solicitações, use “Solicitação de privacidade — Aura Launcher” no assunto. Não envie senhas, códigos de verificação ou informações sensíveis por e-mail."]
+        ]
+      },
+      de: {
+        title: "Datenschutzerklärung",
+        intro: "Wie Aura Launcher Daten im Zusammenhang mit Push-Benachrichtigungen verarbeitet und welche Kontrollmöglichkeiten Sie haben.",
+        notice: "Sie haben die Kontrolle. Sie können die Berechtigung jederzeit ablehnen oder Benachrichtigungen in den Android-Einstellungen ausschalten. Andere Funktionen bleiben verfügbar, sofern sie nicht von Benachrichtigungen abhängen.",
+        toc: "In dieser Erklärung",
+        sections: [
+          ["Geltungsbereich", "Diese Erklärung beschreibt, wie Proxgame („wir“) personenbezogene Daten im Zusammenhang mit Push-Benachrichtigungen von Aura Launcher (der „App“) verarbeitet, einschließlich Firebase Cloud Messaging (FCM). Sie ergänzt weitere Datenschutzhinweise in der App; funktionsbezogene Hinweise gelten zusätzlich für die jeweilige Funktion."],
+          ["Mögliche Daten", "Je nach Konfiguration, Gerät und aktivierten Funktionen können verarbeitet werden: FCM-Registrierungstoken; App- und Betriebssystemversion, Gerätetyp und Sprache; IP-Adresse, Zeitpunkte, Zustellstatus, Fehler und technische Protokolle; Benachrichtigungsberechtigung und -einstellungen; Titel, Nachricht und Begleitdaten von Benachrichtigungen; sowie Nutzungs- oder Leistungsereignisse, wenn Messfunktionen aktiviert sind. Ein Token kann personenbezogen sein, wenn es einem Gerät oder Nutzer zugeordnet werden kann. Kontakte, SMS, Passwörter oder Zahlungsdaten benötigen wir für Push-Benachrichtigungen nicht."],
+          ["Zwecke und Rechtsgrundlagen", "Wir verarbeiten Daten, um Geräte zu registrieren, angeforderte Benachrichtigungen zu adressieren und zuzustellen, Einstellungen zu speichern, den Dienst zu sichern, Fehler zu beheben, Missbrauch zu verhindern, die Zuverlässigkeit zu verbessern, Anfragen zu beantworten und gesetzliche Pflichten zu erfüllen. Rechtsgrundlage können Ihre Einwilligung, eine von Ihnen angeforderte Funktion, unser berechtigtes Interesse an einem sicheren Dienst oder eine gesetzliche Pflicht sein. Wo vorgeschrieben, holen wir für nicht erforderliche Messungen eine gesonderte Einwilligung ein."],
+          ["Berechtigung und Einstellungen", "Sie können Benachrichtigungen unter Android-Einstellungen → Apps → Aura Launcher → Benachrichtigungen ablehnen, ändern oder ausschalten; die Bezeichnungen können abweichen. Bietet die App Themen-Einstellungen, können Sie diese ebenfalls dort ändern. Das Ausschalten löscht bereits verarbeitete Token oder Protokolle nicht zwingend sofort. Nutzen Sie eine Abmeldefunktion, falls vorhanden, oder deinstallieren Sie die App; die Löschung bei Anbietern kann Zeit benötigen. Benachrichtigungen können verspätet eintreffen oder ausfallen und sind nicht für Notfälle geeignet."],
+          ["Firebase und Dienstleister", "Die App verwendet Firebase Cloud Messaging von Google zur Zustellung von Push-Benachrichtigungen. Google verarbeitet hierfür erforderliche Daten gemäß der Konfiguration sowie den eigenen Bedingungen und Richtlinien. Firebase Analytics, Crashlytics oder andere Firebase-Dienste werden nur verwendet, wenn sie in der bereitgestellten Version aktiviert sind. FCM-Nutzung bedeutet nicht, dass alle Firebase-Dienste aktiviert sind."],
+          ["Weitergabe und internationale Übermittlungen", "Erforderliche Daten können an Google/Firebase sowie an Infrastruktur-, Sicherheits- und Supportanbieter weitergegeben werden, die für uns tätig sind. Eine Verarbeitung kann in anderen Ländern erfolgen; soweit gesetzlich erforderlich, nutzen wir geeignete Schutzmaßnahmen. Wir können Daten außerdem offenlegen, um Gesetze einzuhalten, Rechte und Sicherheit zu schützen oder Missbrauch zu bearbeiten. Google kann bestimmte Daten gemäß seinen Richtlinien in eigener Verantwortung verarbeiten."],
+          ["Speicherung und Sicherheit", "Wir speichern Daten nur so lange, wie es für die beschriebenen Zwecke, die Dienstkonfiguration, die Fehlerbehebung oder gesetzliche Pflichten erforderlich ist. Ungültige Token können erneuert oder entfernt werden; Diagnoseprotokolle richten sich nach den Speicherfristen des Anbieters. Wir setzen angemessene technische und organisatorische Maßnahmen ein, können jedoch keine absolute Sicherheit garantieren."],
+          ["Ihre Rechte und Wahlmöglichkeiten", "Je nach geltendem Recht können Sie Auskunft, eine Kopie, Berichtigung, Löschung oder Einschränkung verlangen, bestimmten Verarbeitungen widersprechen, eine Einwilligung widerrufen oder sich bei einer Datenschutzaufsicht beschweren. Ein Widerruf wirkt nicht rückwirkend. Benachrichtigungen können Sie direkt am Gerät ausschalten. Für weitere Rechte kontaktieren Sie uns; gegebenenfalls prüfen wir Ihre Identität und antworten innerhalb gesetzlicher Fristen."],
+          ["Kinder", "Wir erheben nicht wissentlich personenbezogene Daten von Kindern entgegen geltenden Alters- oder Zustimmungsvorschriften. Wenn Sie als Elternteil oder Erziehungsberechtigter vermuten, dass ein Kind uns unzulässig Daten übermittelt hat, kontaktieren Sie uns bitte zur Prüfung."],
+          ["Änderungen", "Wir können diese Erklärung bei Änderungen der App, der Dienste oder des Rechts aktualisieren. Die neue Fassung mit Datum wird hier veröffentlicht. Wesentliche Änderungen, die Ihre Rechte oder die Datennutzung betreffen, teilen wir Ihnen erforderlichenfalls in der App oder auf anderem geeignetem Weg mit."],
+          ["Verantwortlicher und Kontakt", "Entwickler und Datenschutzkontakt ist Proxgame. Bitte verwenden Sie als Betreff „Datenschutzanfrage — Aura Launcher“. Senden Sie keine Passwörter, Bestätigungscodes oder sensiblen Informationen per E-Mail."]
+        ]
+      },
+      ja: {
+        title: "プライバシーポリシー",
+        intro: "Aura Launcherがプッシュ通知に関連するデータをどのように取り扱うか、また利用者が選択できる設定について説明します。",
+        notice: "通知の許可や停止はいつでもAndroidの設定から変更できます。通知を必要とする機能を除き、アプリの他の機能は引き続き利用できます。",
+        toc: "目次",
+        sections: [
+          ["適用範囲", "本ポリシーは、Proxgame（以下「当社」）がAura Launcher（以下「本アプリ」）のプッシュ通知に関連する個人データをどのように取り扱うかを説明します。Firebase Cloud Messaging（FCM）の利用も対象です。本アプリ内の他のプライバシー通知や機能別の通知とあわせて適用されます。"],
+          ["取り扱う可能性のあるデータ", "設定や端末、利用中の機能に応じて、FCM登録トークン、アプリ・OSのバージョン、端末の種類と言語、IPアドレス、送受信時刻、配信状況、エラーや技術ログ、通知許可と設定、通知のタイトル・本文・付随データ、計測機能が有効な場合の利用・性能イベントを取り扱うことがあります。端末等に結び付くトークンは個人データとなる場合があります。通知の配信に連絡先、SMS、パスワード、決済情報は必要ありません。"],
+          ["利用目的と法的根拠", "端末の登録、希望された通知の配信、設定の保存、サービスの保護、エラー対応、不正防止、配信の信頼性向上、問い合わせ対応、法的義務の履行のためにデータを処理します。根拠は、同意、希望された機能の提供、安全なサービス運営に関する正当な利益、または法的義務となる場合があります。法令上必要な場合、必須でない計測には別途同意を得ます。"],
+          ["通知の許可と設定", "Androidの「設定」→「アプリ」→「Aura Launcher」→「通知」から、許可を拒否・変更・停止できます。項目名は端末により異なる場合があります。アプリ内に通知カテゴリの設定があれば、そちらも変更できます。停止しても、処理済みのトークンやログが直ちに削除されるとは限りません。配信停止機能があれば利用するか、アプリをアンインストールしてください。事業者側の削除には時間がかかることがあります。通知は遅延・未達となる場合があり、緊急用途には使用しないでください。"],
+          ["Firebaseとサービス提供者", "本アプリは通知配信にGoogleのFirebase Cloud Messagingを利用します。Googleはアプリの設定および独自の規約・ポリシーに従い、サービスに必要なデータを処理します。Firebase Analytics、Crashlytics等は、公開中のバージョンで有効な場合に限り利用されます。FCMの利用は、すべてのFirebaseサービスが有効であることを意味しません。"],
+          ["共有と国外移転", "必要なデータをGoogle/Firebaseや、当社のために処理を行うインフラ・セキュリティ・サポート提供者と共有することがあります。国外で処理される場合があり、法令に従い適切な保護措置を講じます。法令遵守、権利・安全の保護、不正対応のために開示することもあります。Googleは独自のポリシーに基づき、一部データを独立した立場で処理する場合があります。"],
+          ["保存期間と安全管理", "データは、記載した目的、サービス設定、障害対応または法的義務に必要な期間だけ保存します。無効なトークンは更新・削除される場合があり、診断ログは提供者の保存期間に従います。適切な技術的・組織的対策を講じますが、絶対的な安全を保証するものではありません。"],
+          ["利用者の権利と選択", "適用法令により、個人データの開示・写し・訂正・削除・処理制限の請求、特定の処理への異議、同意の撤回、監督機関への申立てが認められる場合があります。撤回前の処理の適法性には影響しません。通知は端末設定で停止できます。その他の請求は下記へご連絡ください。本人確認をお願いする場合があり、法定期間内に回答します。"],
+          ["お子さまのプライバシー", "適用される年齢要件や保護者同意の要件に反して、子どもの個人データを故意に収集することはありません。保護者の方が不適切なデータ提供に気付いた場合は、ご連絡ください。"],
+          ["ポリシーの変更", "アプリ、サービスまたは法令の変更に応じて本ポリシーを更新することがあります。更新版と日付をこのページに掲載します。権利やデータ利用に重大な変更がある場合、必要に応じてアプリ内などでお知らせします。"],
+          ["事業者と連絡先", "開発者およびプライバシー窓口はProxgameです。メールの件名に「プライバシーに関する問い合わせ — Aura Launcher」と記載してください。パスワード、認証コード、機微な情報はメールで送らないでください。"]
+        ]
+      },
+      ko: {
+        title: "개인정보 처리방침",
+        intro: "Aura Launcher가 푸시 알림 관련 데이터를 처리하는 방식과 이용자가 선택할 수 있는 설정을 안내합니다.",
+        notice: "알림 권한은 Android 설정에서 언제든 거부하거나 끌 수 있습니다. 알림이 필요한 기능을 제외한 다른 기능은 계속 사용할 수 있습니다.",
+        toc: "목차",
+        sections: [
+          ["적용 범위", "이 방침은 Proxgame(“당사”)이 Aura Launcher(“앱”)의 푸시 알림과 관련된 개인정보를 처리하는 방법을 설명하며 Firebase Cloud Messaging(FCM) 사용을 포함합니다. 앱의 다른 개인정보 안내 및 기능별 안내와 함께 적용됩니다."],
+          ["처리될 수 있는 데이터", "설정, 기기 및 활성화된 기능에 따라 FCM 등록 토큰, 앱·운영체제 버전, 기기 유형과 언어, IP 주소, 전송 시각·상태, 오류 및 기술 로그, 알림 권한과 설정, 알림 제목·내용·부가 데이터, 측정 기능이 켜진 경우의 사용·성능 이벤트가 처리될 수 있습니다. 기기나 이용자와 연결되는 토큰은 개인정보일 수 있습니다. 알림 전송에 연락처, SMS, 비밀번호 또는 결제 정보는 필요하지 않습니다."],
+          ["목적 및 법적 근거", "기기 등록, 요청한 알림 전송, 설정 저장, 서비스 보안, 오류 진단, 오용 방지, 전송 안정성 개선, 문의 대응 및 법적 의무 이행을 위해 데이터를 처리합니다. 법적 근거는 동의, 요청한 기능 제공, 안전한 서비스 운영을 위한 정당한 이익 또는 법적 의무일 수 있습니다. 법률이 요구하는 경우 필수적이지 않은 측정에는 별도 동의를 받습니다."],
+          ["알림 권한 및 설정", "Android 설정 → 앱 → Aura Launcher → 알림에서 권한을 거부·변경·해제할 수 있습니다. 메뉴 이름은 기기에 따라 다를 수 있습니다. 앱에서 주제별 알림 설정을 제공하면 앱에서도 변경할 수 있습니다. 권한을 꺼도 이미 처리된 토큰이나 로그가 즉시 삭제되지는 않을 수 있습니다. 제공되는 경우 구독 해제 기능을 사용하거나 앱을 삭제하세요. 제공자 시스템의 삭제에는 시간이 걸릴 수 있습니다. 알림은 지연되거나 전달되지 않을 수 있으므로 긴급 용도로 사용하지 마세요."],
+          ["Firebase 및 서비스 제공자", "앱은 푸시 전송을 위해 Google의 Firebase Cloud Messaging을 사용합니다. Google은 앱 구성과 자체 약관 및 정책에 따라 서비스에 필요한 데이터를 처리합니다. Firebase Analytics, Crashlytics 등은 배포된 버전에서 활성화된 경우에만 사용됩니다. FCM 사용이 모든 Firebase 서비스의 활성화를 의미하지는 않습니다."],
+          ["공유 및 국제 이전", "필요한 데이터는 Google/Firebase 및 당사를 대신해 처리하는 인프라·보안·지원 제공자와 공유될 수 있습니다. 다른 국가에서 처리될 수 있으며 법률이 요구하는 보호조치를 적용합니다. 법 준수, 권리와 안전 보호, 오용 대응을 위해 데이터를 공개할 수도 있습니다. Google은 자체 정책에 따라 일부 데이터를 독립적인 책임자로 처리할 수 있습니다."],
+          ["보유 기간 및 보안", "데이터는 명시된 목적, 서비스 설정, 문제 해결 또는 법적 의무에 필요한 기간 동안만 보유합니다. 유효하지 않은 토큰은 갱신되거나 삭제될 수 있으며 진단 로그는 제공자의 보유 기간을 따릅니다. 적절한 기술적·관리적 조치를 적용하지만 절대적인 보안을 보장할 수는 없습니다."],
+          ["이용자의 권리와 선택", "적용 법률에 따라 열람·사본·정정·삭제·처리 제한을 요청하거나, 특정 처리에 이의를 제기하고, 동의를 철회하거나, 감독기관에 신고할 수 있습니다. 철회 전 처리의 적법성에는 영향을 미치지 않습니다. 알림은 기기 설정에서 끌 수 있습니다. 다른 권리를 행사하려면 아래 연락처로 요청하세요. 신원 확인 후 법정 기한 내 답변할 수 있습니다."],
+          ["아동 개인정보", "관련 연령 및 보호자 동의 요건을 위반하여 아동의 개인정보를 고의로 수집하지 않습니다. 보호자는 아동이 부적절하게 데이터를 제공했다고 생각하면 당사에 연락해 검토를 요청할 수 있습니다."],
+          ["방침 변경", "앱, 서비스 또는 법률이 변경되면 이 방침을 업데이트할 수 있습니다. 새 버전과 날짜를 이 페이지에 게시합니다. 권리나 데이터 이용에 중요한 변경이 있으면 필요한 경우 앱 또는 적절한 방법으로 알립니다."],
+          ["책임자 및 연락처", "개발자 및 개인정보 담당자는 Proxgame입니다. 이메일 제목에 “개인정보 요청 — Aura Launcher”라고 적어 주세요. 비밀번호, 인증 코드 또는 민감한 정보는 이메일로 보내지 마세요."]
+        ]
+      },
+      "zh-CN": {
+        title: "隐私政策",
+        intro: "了解 Aura Launcher 如何处理与推送通知相关的数据，以及您可以使用的控制选项。",
+        notice: "您可以随时在 Android 设置中拒绝或关闭通知权限。除依赖通知才能运行的功能外，其他应用功能仍可使用。",
+        toc: "政策目录",
+        sections: [
+          ["适用范围", "本政策说明 Proxgame（“我们”）如何处理 Aura Launcher（“应用”）推送通知相关的个人信息，包括使用 Firebase Cloud Messaging（FCM）。本政策与应用内其他隐私说明一并适用；特定功能的说明也适用于对应功能。"],
+          ["可能处理的数据", "根据应用配置、设备及已启用功能，可能处理：FCM 注册令牌；应用和操作系统版本、设备类型及语言；IP 地址、发送/接收时间、送达状态、错误及技术日志；通知权限和偏好；通知标题、内容及附加数据；以及在启用测量功能时产生的使用或性能事件。可关联到设备或用户的令牌可能属于个人信息。发送通知不需要通讯录、短信、密码或支付数据。"],
+          ["处理目的和法律依据", "我们为注册设备、路由和发送您请求的通知、保存偏好、保障服务安全、排查错误、防止滥用、提升可靠性、响应支持请求及履行法律义务而处理数据。法律依据可能是您的同意、提供您请求的功能、保障服务安全的合法利益或法律义务。法律要求时，非必要测量会另行征求同意。"],
+          ["通知权限和控制", "您可以在 Android 设置 → 应用 → Aura Launcher → 通知中拒绝、更改或关闭权限，菜单名称可能因设备而异。如应用提供主题设置，也可在应用内调整。关闭权限不一定会立即删除已处理的令牌或日志。如有退订功能，请使用该功能；您也可以卸载应用。服务提供商系统中的删除可能需要时间。通知可能延迟或无法送达，请勿用于紧急情况。"],
+          ["Firebase 和服务提供商", "应用使用 Google 的 Firebase Cloud Messaging 支持推送通知。Google 根据应用配置及其自身条款和政策处理提供服务所需的数据。Firebase Analytics、Crashlytics 等服务仅在发布版本中启用时使用。使用 FCM 不代表所有 Firebase 服务均已启用。"],
+          ["共享和国际传输", "必要数据可能与 Google/Firebase 以及代表我们处理数据的基础设施、安全或技术支持服务商共享。数据可能在其他国家处理；法律要求时，我们会采取适当保障措施。为遵守法律、保护权利和安全或处理滥用行为，我们也可能披露数据。Google 可能依据其政策以独立责任方身份处理某些数据。"],
+          ["保存期限和安全", "我们仅在实现上述目的、服务配置、故障处理或履行法律义务所需期间保存数据。失效令牌可能被更新或删除；诊断日志遵循服务提供商的保存期限。我们采取适当的技术和组织措施，但无法保证绝对安全。"],
+          ["您的权利和选择", "根据适用法律，您可能有权请求访问、更正、删除或限制处理个人信息，反对特定处理，撤回同意，或向主管数据保护机构投诉。撤回不影响此前处理的合法性。您可在设备设置中关闭通知。行使其他权利请通过下方邮箱联系；我们可能核验身份，并在法定期限内答复。"],
+          ["儿童隐私", "我们不会故意违反适用年龄或监护人同意要求收集儿童个人信息。如监护人认为儿童不适当地向我们提供了数据，请联系我们进行审查和处理。"],
+          ["政策更新", "应用、服务或法律要求发生变化时，我们可能更新本政策，并在此发布新版本和更新日期。如重大变更影响您的权利或数据使用方式，我们会在法律要求时通过应用或其他适当方式通知您。"],
+          ["责任方和联系方式", "开发者及隐私联系方：Proxgame。邮件主题请注明“隐私请求 — Aura Launcher”。请勿通过电子邮件发送密码、验证码或敏感信息。"]
+        ]
+      },
+      hi: {
+        title: "गोपनीयता नीति",
+        intro: "जानें कि Aura Launcher पुश नोटिफ़िकेशन से जुड़े डेटा को कैसे संभालता है और आपके पास कौन-से नियंत्रण विकल्प हैं।",
+        notice: "नियंत्रण आपके पास है। आप Android सेटिंग में किसी भी समय नोटिफ़िकेशन की अनुमति अस्वीकार या बंद कर सकते हैं। नोटिफ़िकेशन पर निर्भर सुविधाओं को छोड़कर अन्य सुविधाएँ उपलब्ध रहेंगी।",
+        toc: "इस नीति में",
+        sections: [
+          ["दायरा", "यह नीति बताती है कि Proxgame (“हम”) Aura Launcher (“ऐप”) के पुश नोटिफ़िकेशन से संबंधित व्यक्तिगत डेटा को कैसे संभालता है, जिसमें Firebase Cloud Messaging (FCM) का उपयोग शामिल है। यह ऐप के अन्य गोपनीयता नोटिसों के साथ लागू होती है; किसी सुविधा का अलग नोटिस उस सुविधा पर भी लागू होगा।"],
+          ["संभवतः संसाधित डेटा", "ऐप कॉन्फ़िगरेशन, डिवाइस और सक्रिय सुविधाओं के अनुसार FCM पंजीकरण टोकन; ऐप और ऑपरेटिंग सिस्टम संस्करण, डिवाइस प्रकार और भाषा; IP पता, समय, डिलीवरी स्थिति, त्रुटियाँ और तकनीकी लॉग; नोटिफ़िकेशन अनुमति और प्राथमिकताएँ; नोटिफ़िकेशन का शीर्षक, संदेश और संलग्न डेटा; तथा मापन सुविधाएँ चालू होने पर उपयोग या प्रदर्शन घटनाएँ संसाधित हो सकती हैं। डिवाइस या उपयोगकर्ता से जुड़ सकने वाला टोकन व्यक्तिगत डेटा हो सकता है। नोटिफ़िकेशन भेजने के लिए संपर्क, SMS, पासवर्ड या भुगतान डेटा आवश्यक नहीं है।"],
+          ["उद्देश्य और कानूनी आधार", "हम डिवाइस पंजीकृत करने, अनुरोधित नोटिफ़िकेशन भेजने, प्राथमिकताएँ याद रखने, सेवा सुरक्षित रखने, त्रुटियाँ ठीक करने, दुरुपयोग रोकने, विश्वसनीयता सुधारने, सहायता अनुरोधों का उत्तर देने और कानूनी दायित्व पूरा करने के लिए डेटा संसाधित करते हैं। आधार आपकी सहमति, अनुरोधित सुविधा प्रदान करना, सुरक्षित सेवा चलाने का हमारा वैध हित या कानूनी दायित्व हो सकता है। कानून आवश्यक करे तो गैर-ज़रूरी मापन के लिए अलग सहमति ली जाती है।"],
+          ["अनुमति और नियंत्रण", "Android सेटिंग → ऐप्स → Aura Launcher → नोटिफ़िकेशन में अनुमति अस्वीकार, बदल या बंद की जा सकती है; नाम डिवाइस के अनुसार बदल सकते हैं। ऐप में विषय-आधारित नियंत्रण हों तो उन्हें भी बदलें। अनुमति बंद करने से पहले से संसाधित टोकन या लॉग तुरंत मिटें, यह ज़रूरी नहीं। उपलब्ध हो तो सदस्यता रद्द करें या ऐप अनइंस्टॉल करें; प्रदाता के सिस्टम से हटाने में समय लग सकता है। नोटिफ़िकेशन देर से आ सकते हैं या नहीं आ सकते—इन्हें आपात स्थिति के लिए न मानें।"],
+          ["Firebase और सेवा प्रदाता", "ऐप पुश डिलीवरी के लिए Google Firebase Cloud Messaging का उपयोग करता है। Google ऐप कॉन्फ़िगरेशन और अपनी शर्तों व नीतियों के अनुसार सेवा हेतु आवश्यक डेटा संसाधित करता है। Firebase Analytics, Crashlytics या अन्य सेवाएँ केवल तभी उपयोग होती हैं जब जारी संस्करण में सक्षम हों। FCM का उपयोग सभी Firebase सेवाओं के सक्षम होने का अर्थ नहीं है।"],
+          ["साझाकरण और अंतरराष्ट्रीय स्थानांतरण", "ज़रूरी डेटा Google/Firebase और हमारी ओर से काम करने वाले इंफ्रास्ट्रक्चर, सुरक्षा या सहायता प्रदाताओं के साथ साझा हो सकता है। डेटा दूसरे देशों में संसाधित हो सकता है; कानून के अनुसार सुरक्षा उपाय लागू किए जाते हैं। कानून पालन, अधिकारों और सुरक्षा की रक्षा या दुरुपयोग से निपटने के लिए डेटा प्रकट किया जा सकता है। Google अपनी नीतियों के तहत कुछ डेटा को स्वतंत्र पक्ष के रूप में संसाधित कर सकता है।"],
+          ["संग्रह अवधि और सुरक्षा", "डेटा केवल बताए गए उद्देश्यों, सेवा सेटिंग, समस्या समाधान या कानूनी दायित्वों के लिए आवश्यक अवधि तक रखा जाता है। अमान्य टोकन बदले या हटाए जा सकते हैं; निदान लॉग प्रदाता की अवधि के अनुसार रखे जाते हैं। उचित तकनीकी और संगठनात्मक उपाय अपनाए जाते हैं, लेकिन पूर्ण सुरक्षा की गारंटी नहीं दी जा सकती।"],
+          ["आपके अधिकार और विकल्प", "लागू कानून के अनुसार आपको डेटा देखने, उसकी प्रति पाने, सुधारने, हटाने या संसाधन सीमित करने का अनुरोध करने; कुछ संसाधनों पर आपत्ति करने; सहमति वापस लेने; या प्राधिकरण से शिकायत करने का अधिकार हो सकता है। सहमति वापस लेने से पहले के संसाधन की वैधता प्रभावित नहीं होती। अन्य अधिकारों के लिए नीचे दिए पते पर लिखें; पहचान सत्यापन हो सकता है और उत्तर कानूनी समय-सीमा में दिया जाएगा।"],
+          ["बच्चों की गोपनीयता", "हम लागू आयु या अभिभावकीय सहमति आवश्यकताओं के विरुद्ध बच्चों का व्यक्तिगत डेटा जानबूझकर एकत्र नहीं करते। यदि अभिभावक को लगे कि बच्चे ने अनुचित रूप से डेटा दिया है, तो समीक्षा के लिए हमसे संपर्क करें।"],
+          ["नीति में बदलाव", "ऐप, सेवाओं या कानून में बदलाव होने पर हम इस नीति को अपडेट कर सकते हैं और नया संस्करण व तारीख यहाँ प्रकाशित करेंगे। अधिकारों या डेटा उपयोग को प्रभावित करने वाला महत्वपूर्ण बदलाव होने पर, जहाँ आवश्यक हो, ऐप या अन्य उचित माध्यम से सूचना दी जाएगी।"],
+          ["जिम्मेदार पक्ष और संपर्क", "डेवलपर और गोपनीयता संपर्क Proxgame है। ईमेल विषय में “Privacy request — Aura Launcher” लिखें। ईमेल से पासवर्ड, सत्यापन कोड या संवेदनशील जानकारी न भेजें।"]
+        ]
+      },
+      id: {
+        title: "Kebijakan Privasi",
+        intro: "Pelajari cara Aura Launcher menangani data terkait notifikasi push dan pilihan kontrol yang tersedia bagi Anda.",
+        notice: "Anda memegang kendali. Anda dapat menolak izin atau menonaktifkan notifikasi kapan saja melalui setelan Android. Fitur lain tetap tersedia kecuali fitur yang memerlukan notifikasi.",
+        toc: "Dalam kebijakan ini",
+        sections: [
+          ["Cakupan", "Kebijakan ini menjelaskan cara Proxgame (“kami”) menangani data pribadi terkait notifikasi push Aura Launcher (“Aplikasi”), termasuk penggunaan Firebase Cloud Messaging (FCM). Kebijakan ini melengkapi pemberitahuan privasi lain di Aplikasi; pemberitahuan khusus fitur juga berlaku untuk fitur terkait."],
+          ["Data yang mungkin diproses", "Bergantung pada konfigurasi, perangkat, dan fitur yang aktif, data dapat mencakup token pendaftaran FCM; versi aplikasi dan sistem operasi, jenis perangkat dan bahasa; alamat IP, waktu, status pengiriman, kesalahan dan log teknis; izin dan preferensi notifikasi; judul, pesan dan data tambahan notifikasi; serta peristiwa penggunaan atau kinerja jika fitur pengukuran diaktifkan. Token yang dapat dikaitkan dengan perangkat atau pengguna dapat menjadi data pribadi. Kontak, SMS, kata sandi, dan data pembayaran tidak diperlukan untuk mengirim notifikasi."],
+          ["Tujuan dan dasar hukum", "Kami memproses data untuk mendaftarkan perangkat, mengarahkan dan mengirim notifikasi yang diminta, mengingat preferensi jika tersedia, mengamankan layanan, mendiagnosis kesalahan, mencegah penyalahgunaan, meningkatkan keandalan, menanggapi permintaan bantuan, dan memenuhi kewajiban hukum. Dasarnya dapat berupa persetujuan, penyediaan fitur yang diminta, kepentingan sah kami dalam menjaga keamanan layanan, atau kewajiban hukum. Jika diwajibkan, kami meminta persetujuan terpisah untuk pengukuran yang tidak penting."],
+          ["Izin dan kontrol", "Anda dapat menolak, mengubah, atau menonaktifkan izin melalui Setelan Android → Aplikasi → Aura Launcher → Notifikasi; nama menu dapat berbeda. Jika tersedia, ubah pengaturan topik di Aplikasi. Menonaktifkan izin tidak selalu langsung menghapus token atau log yang telah diproses. Gunakan opsi berhenti berlangganan jika tersedia atau hapus Aplikasi; penghapusan pada sistem penyedia mungkin memerlukan waktu. Notifikasi dapat terlambat atau tidak terkirim dan bukan untuk keadaan darurat."],
+          ["Firebase dan penyedia layanan", "Aplikasi menggunakan Firebase Cloud Messaging dari Google untuk mendukung pengiriman push. Google memproses data yang diperlukan sesuai konfigurasi Aplikasi dan ketentuan serta kebijakannya sendiri. Firebase Analytics, Crashlytics, atau layanan Firebase lain hanya digunakan jika diaktifkan pada versi yang dirilis. Penggunaan FCM tidak berarti semua layanan Firebase aktif."],
+          ["Pembagian dan transfer internasional", "Data yang diperlukan dapat dibagikan dengan Google/Firebase dan penyedia infrastruktur, keamanan, atau dukungan yang memproses data atas nama kami. Data dapat diproses di negara lain; kami menerapkan perlindungan yang diwajibkan hukum. Kami juga dapat mengungkapkan data untuk mematuhi hukum, melindungi hak dan keselamatan, atau menangani penyalahgunaan. Google dapat memproses data tertentu sebagai pihak independen berdasarkan kebijakannya."],
+          ["Penyimpanan dan keamanan", "Data disimpan hanya selama diperlukan untuk tujuan yang dijelaskan, konfigurasi layanan, penanganan masalah, atau kewajiban hukum. Token yang tidak valid dapat diperbarui atau dihapus; log diagnostik mengikuti masa penyimpanan penyedia. Kami menerapkan langkah teknis dan organisasi yang sesuai, tetapi tidak dapat menjamin keamanan mutlak."],
+          ["Hak dan pilihan Anda", "Bergantung pada hukum yang berlaku, Anda dapat meminta akses, salinan, koreksi, penghapusan, atau pembatasan; menolak pemrosesan tertentu, menarik persetujuan, atau mengajukan keluhan kepada otoritas perlindungan data. Penarikan tidak memengaruhi pemrosesan sebelumnya. Notifikasi dapat dimatikan melalui perangkat. Untuk hak lainnya, hubungi kami; verifikasi identitas mungkin diperlukan dan kami akan menjawab dalam batas waktu hukum."],
+          ["Privasi anak", "Kami tidak dengan sengaja mengumpulkan data pribadi anak dengan melanggar persyaratan usia atau persetujuan orang tua yang berlaku. Jika orang tua/wali menduga anak memberikan data secara tidak semestinya, silakan hubungi kami untuk peninjauan."],
+          ["Perubahan kebijakan", "Kami dapat memperbarui kebijakan ini jika Aplikasi, layanan, atau hukum berubah. Versi baru dan tanggalnya akan dipublikasikan di halaman ini. Jika perubahan penting memengaruhi hak atau penggunaan data, kami akan memberi tahu melalui Aplikasi atau cara lain yang sesuai jika diwajibkan."],
+          ["Penanggung jawab dan kontak", "Pengembang dan kontak privasi adalah Proxgame. Cantumkan “Permintaan privasi — Aura Launcher” pada subjek email. Jangan kirim kata sandi, kode verifikasi, atau informasi sensitif melalui email."]
+        ]
+      },
+      ru: {
+        title: "Политика конфиденциальности",
+        intro: "Как Aura Launcher обрабатывает данные, связанные с push-уведомлениями, и какие настройки доступны пользователю.",
+        notice: "Вы управляете уведомлениями. Разрешение можно отклонить или отключить в настройках Android в любое время. Остальные функции приложения доступны, кроме тех, которым необходимы уведомления.",
+        toc: "Содержание",
+        sections: [
+          ["Область действия", "Эта политика объясняет, как Proxgame («мы») обрабатывает персональные данные, связанные с push-уведомлениями Aura Launcher («Приложение»), включая Firebase Cloud Messaging (FCM). Она дополняет другие уведомления о конфиденциальности в Приложении; отдельные уведомления о функциях также применяются к ним."],
+          ["Какие данные могут обрабатываться", "В зависимости от настроек, устройства и включённых функций могут обрабатываться регистрационный токен FCM; версии приложения и ОС, тип устройства и язык; IP-адрес, время, статус доставки, ошибки и технические журналы; разрешение и настройки уведомлений; заголовок, текст и дополнительные данные уведомления; события использования или производительности, если включены средства измерения. Токен может быть персональными данными, если связан с устройством или пользователем. Контакты, SMS, пароли и платёжные данные для отправки уведомлений не требуются."],
+          ["Цели и правовые основания", "Данные обрабатываются для регистрации устройств, маршрутизации и доставки запрошенных уведомлений, сохранения настроек, защиты сервиса, диагностики ошибок, предотвращения злоупотреблений, повышения надёжности, ответа на обращения и соблюдения закона. Основанием могут быть ваше согласие, предоставление запрошенной функции, наш законный интерес в безопасности сервиса или юридическая обязанность. Когда этого требует закон, для необязательных измерений запрашивается отдельное согласие."],
+          ["Разрешения и настройки", "Разрешение можно отклонить, изменить или отключить в Настройки Android → Приложения → Aura Launcher → Уведомления; названия пунктов могут различаться. Если в Приложении есть настройки тем, измените их там. Отключение разрешения не обязательно сразу удаляет ранее обработанные токены или журналы. Используйте функцию отписки, если она доступна, либо удалите Приложение; удаление у поставщика может занять время. Уведомления могут задерживаться или не доставляться и не предназначены для экстренных случаев."],
+          ["Firebase и поставщики услуг", "Приложение использует Firebase Cloud Messaging от Google для доставки push-уведомлений. Google обрабатывает необходимые данные в соответствии с настройками Приложения и собственными условиями и политиками. Firebase Analytics, Crashlytics и другие сервисы применяются только если включены в опубликованной версии. Использование FCM не означает, что включены все сервисы Firebase."],
+          ["Передача и международная обработка", "Необходимые данные могут передаваться Google/Firebase и поставщикам инфраструктуры, безопасности или поддержки, обрабатывающим данные от нашего имени. Данные могут обрабатываться в других странах; при необходимости мы применяем предусмотренные законом гарантии. Раскрытие также возможно для соблюдения закона, защиты прав и безопасности или пресечения злоупотреблений. Google может самостоятельно обрабатывать некоторые данные согласно своим политикам."],
+          ["Хранение и безопасность", "Данные хранятся только столько, сколько необходимо для указанных целей, настроек сервиса, устранения неполадок или выполнения закона. Недействительные токены могут обновляться или удаляться; сроки хранения диагностических журналов определяет поставщик. Мы применяем надлежащие технические и организационные меры, но абсолютную безопасность гарантировать нельзя."],
+          ["Ваши права и выбор", "В зависимости от применимого закона вы можете запросить доступ, копию, исправление, удаление или ограничение обработки; возразить против определённой обработки, отозвать согласие или обратиться в надзорный орган по защите данных. Отзыв не влияет на законность предыдущей обработки. Уведомления можно отключить в настройках устройства. По другим вопросам напишите нам; может потребоваться подтверждение личности, ответ будет дан в установленный законом срок."],
+          ["Данные детей", "Мы сознательно не собираем персональные данные детей с нарушением применимых требований к возрасту или согласию родителей. Если родитель или опекун считает, что ребёнок неправомерно предоставил нам данные, свяжитесь с нами для проверки."],
+          ["Изменения политики", "Мы можем обновлять политику при изменении Приложения, сервисов или законодательства. Новая версия и дата будут опубликованы на этой странице. О существенных изменениях, влияющих на права или использование данных, мы сообщим в Приложении или иным подходящим способом, если это требуется."],
+          ["Ответственная сторона и контакты", "Разработчик и контакт по вопросам конфиденциальности — Proxgame. Укажите в теме письма «Запрос о конфиденциальности — Aura Launcher». Не отправляйте по электронной почте пароли, коды подтверждения или конфиденциальную информацию."]
+        ]
+      }
+    };
+
+    const languageSelect = document.querySelector("#language-select");
+    const englishPage = document.querySelector(".lang-en");
+    const frenchPage = document.querySelector(".lang-fr");
+    const localizedPage = document.querySelector("#localized-policy");
+    const englishTitles = [
+      "Scope", "Data that may be processed", "Purposes and legal bases",
+      "Notification permission and controls", "Firebase and service providers",
+      "Sharing and international transfers", "Retention and security",
+      "Your rights and choices", "Children's privacy", "Changes to this policy",
+      "Responsible party and contact"
+    ];
+    const englishBodies = [
+      "This policy explains how Proxgame (“we”) handles personal data related to push notifications in Aura Launcher (the “App”), including the use of Firebase Cloud Messaging (FCM). It supplements other privacy notices in the App. Feature-specific notices also apply.",
+      "Depending on the App configuration, device, and enabled features, data may include an FCM registration token; app and operating-system versions, device type and language; IP address, timestamps, delivery status, errors and technical logs; notification permission and preferences; notification title, message and accompanying data; and usage or performance events if measurement features are enabled. A token may be personal data when linked to a device or user. Contacts, SMS, passwords and payment data are not required to deliver notifications.",
+      "We process data to register devices, route and deliver requested notifications, remember preferences where available, secure the service, diagnose errors, prevent abuse, improve reliability, respond to support requests and comply with law. Legal bases may include consent, providing a requested feature, our legitimate interest in service security, or a legal obligation. Where required, separate consent is obtained for non-essential measurement.",
+      "You can deny, change or disable permission in Android Settings → Apps → Aura Launcher → Notifications; labels may vary. Use in-app topic controls if available. Turning permission off may not immediately delete tokens or logs already processed. Use an unsubscribe option if available, or uninstall the App; deletion from provider systems may take time. Notifications may be delayed or undelivered and are not for emergencies.",
+      "The App uses Google Firebase Cloud Messaging to support push delivery. Google processes data needed for the service under the App configuration and Google's terms and policies. Firebase Analytics, Crashlytics or other Firebase services are used only if enabled in the deployed version. Using FCM does not mean all Firebase services are enabled.",
+      "Necessary data may be shared with Google/Firebase and infrastructure, security or support providers processing data for us. Data may be processed in other countries; legally required safeguards are applied. We may also disclose data to comply with law, protect rights and safety, or address abuse. Google may process certain data independently under its policies.",
+      "Data is retained only as long as needed for the stated purposes, service settings, troubleshooting or legal obligations. Invalid tokens may be refreshed or removed; diagnostic logs follow provider retention periods. We use appropriate technical and organizational measures, but no method guarantees absolute security.",
+      "Depending on applicable law, you may request access, a copy, correction, deletion or restriction; object to certain processing, withdraw consent, or complain to a data protection authority. Withdrawal does not affect prior processing. Turn off notifications in device settings. For other rights, contact us; identity verification may be required and we will respond within legal time limits.",
+      "We do not knowingly collect children's personal data contrary to applicable age or parental-consent requirements. Parents or guardians who believe a child provided data inappropriately may contact us for review.",
+      "We may update this policy if the App, services or law changes. The new version and date will be posted here. We will notify you of material changes affecting your rights or data use in the App or another appropriate way where required.",
+      "Developer and privacy contact: Proxgame. Use “Privacy request — Aura Launcher” as the email subject. Do not send passwords, verification codes or sensitive information by email."
+    ];
+
+    function renderLocalizedPolicy(language, translation) {
+      localizedPage.replaceChildren();
+      localizedPage.lang = language;
+      localizedPage.dir = language === "ar" ? "rtl" : "ltr";
+      const hero = document.createElement("section");
+      hero.className = "hero";
+      const eyebrow = document.createElement("span");
+      eyebrow.className = "eyebrow";
+      eyebrow.textContent = "Aura Launcher · Proxgame";
+      const title = document.createElement("h1");
+      title.textContent = translation.title;
+      const intro = document.createElement("p");
+      intro.textContent = translation.intro;
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent = "Aura Launcher · Proxgame · 13 November 2026";
+      hero.append(eyebrow, title, intro, meta);
+
+      const layout = document.createElement("div");
+      layout.className = "layout";
+      const nav = document.createElement("nav");
+      nav.className = "toc";
+      nav.setAttribute("aria-label", translation.toc);
+      const navTitle = document.createElement("h2");
+      navTitle.textContent = translation.toc;
+      const list = document.createElement("ol");
+      const content = document.createElement("div");
+      content.className = "content";
+      const notice = document.createElement("aside");
+      notice.className = "notice";
+      const noticeText = document.createElement("p");
+      noticeText.textContent = translation.notice;
+      notice.append(noticeText);
+      content.append(notice);
+
+      translation.sections.forEach(([heading, body], index) => {
+        const id = `${language}-section-${index + 1}`;
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#${id}`;
+        link.textContent = `${index + 1}. ${heading}`;
+        item.append(link);
+        list.append(item);
+
+        const section = document.createElement("article");
+        section.className = "section";
+        section.id = id;
+        const sectionTitle = document.createElement("h2");
+        sectionTitle.textContent = `${index + 1}. ${heading}`;
+        const paragraph = document.createElement("p");
+        paragraph.textContent = body;
+        section.append(sectionTitle, paragraph);
+        if (index === 4) {
+          const links = document.createElement("p");
+          links.className = "small";
+          links.append(
+            createExternalLink("Firebase privacy information", "https://firebase.google.com/support/privacy"),
+            document.createTextNode(" · "),
+            createExternalLink("Google Privacy Policy", "https://policies.google.com/privacy")
+          );
+          section.append(links);
+        }
+        if (index === 10) {
+          const email = document.createElement("p");
+          const mailLink = document.createElement("a");
+          mailLink.href = "mailto:longnpdevmobile@gmail.com";
+          mailLink.textContent = "longnpdevmobile@gmail.com";
+          email.append(mailLink);
+          section.append(email);
+        }
+        content.append(section);
+      });
+
+      nav.append(navTitle, list);
+      layout.append(nav, content);
+      localizedPage.append(hero, layout);
+    }
+
+    function createExternalLink(label, href) {
+      const link = document.createElement("a");
+      link.href = href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = label;
+      return link;
+    }
+
+    languageSelect.addEventListener("change", () => {
+      const language = languageSelect.value;
+      englishPage.hidden = language !== "en";
+      frenchPage.hidden = language !== "fr";
+      localizedPage.hidden = !policyTranslations[language];
+      if (policyTranslations[language]) {
+        renderLocalizedPolicy(language, policyTranslations[language]);
+      }
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      const titles = {
+        en: "Privacy Policy",
+        fr: "Politique de confidentialité"
+      };
+      document.title = `${titles[language] || policyTranslations[language].title} — Aura Launcher`;
+    });
+  </script>
+</body>
+</html>
